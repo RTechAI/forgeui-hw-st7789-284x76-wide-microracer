@@ -1,45 +1,55 @@
 ---
-name: ForgeUI Hardware Issue
-about: Report a problem with this ForgeUI Hardware Lab project
-title: "[Hardware] "
+name: ForgeUI MicroRacer Issue
+about: Report a MicroRacer game, joystick, display, build, or hardware problem
+title: "[MicroRacer] "
 labels: hardware
 assignees: ''
 ---
 
-# ForgeUI Hardware Issue
+# ForgeUI MicroRacer Issue
 
-Thanks for testing a ForgeUI Hardware Lab project.
-
-This repository contains a physically tested hardware reference developed as part of the ForgeUI hardware validation program.
+Thanks for testing this physically proven ESP32-S3, ST7789, and analog-joystick game project.
 
 **ForgeUI:** https://forgeui.co.nz
 **ForgeUI Studio:** https://studio.forgeui.co.nz
 
 ## Problem
 
-Describe what is happening and what you expected to happen.
+Describe what happened, what you expected, and the shortest sequence that reproduces it.
+
+## Current game state
+
+Where did the problem occur?
+
+- [ ] Title screen
+- [ ] Joystick calibration
+- [ ] Gameplay
+- [ ] Boost
+- [ ] Collision / CRASH animation
+- [ ] GAME OVER / restart
+- [ ] Build or flash
+- [ ] Other (describe below)
 
 ## Hardware
 
 Please provide:
 
 - ESP32 board/model:
-- Display controller:
-- Display size/resolution:
+- ESP32-S3 revision and PSRAM, if known:
+- Display controller and size/resolution:
 - Display/module product link:
 - Interface type:
 - Additional connected hardware:
 
-### Reference hardware for this repository
+### Physically proven reference hardware
 
 - ESP32-S3 DevKitC-1
-- ST7789 TFT
-- 2.25-inch IPS display
+- ST7789 2.25-inch IPS TFT
 - Native resolution: 76×284
-- Landscape viewport: 284×76
-- SPI interface
+- Game viewport: 284×76 landscape
+- SPI at 27 MHz
 
-## Wiring
+## Display wiring
 
 List the wiring you are using.
 
@@ -49,22 +59,47 @@ List the wiring you are using.
 |---|---:|---|
 | GND | GND | Ground |
 | VCC | 3.3V | Power |
-| SCL / SCLK | GPIO 12 | SPI clock |
-| SDA / MOSI | GPIO 11 | SPI data |
-| RST | GPIO 10 | Reset |
-| DC | GPIO 9 | Data / command |
-| CS | GPIO 8 | Chip select |
-| BL | GND | Backlight |
+| SCL / SCLK | GPIO12 | SPI clock |
+| SDA / MOSI | GPIO11 | SPI data |
+| RST | GPIO10 | Reset |
+| DC | GPIO9 | Data / command |
+| CS | GPIO8 | Chip select |
+| BL | GND | Active-low backlight |
 
-### Backlight note
+## Joystick and controls
 
-The module physically tested by ForgeUI uses an **active-low backlight**.
+Please provide:
 
-    BL -> GND
+- Joystick module/model or product link:
+- Joystick wiring (SW, VRy, VRx, supply, GND):
+- Observed joystick centre/calibration values, if available:
+- Steering behaviour (X/Y direction, range, drift, or dead zone):
+- Button behaviour:
+- Boost behaviour:
 
-Other ST7789 modules may use different backlight circuitry.
+### Physically proven joystick mapping
 
-## Software Environment
+| Joystick | ESP32-S3 |
+|---|---:|
+| SW | GPIO4 |
+| VRy | GPIO5 |
+| VRx | GPIO6 |
+| +5V-labelled supply | 3.3V |
+| GND | GND |
+
+GPIO7 is spare. The +5V-labelled joystick supply pin is intentionally powered from 3.3V for this project.
+
+## Gameplay behaviour
+
+Describe the observed behaviour for any relevant items:
+
+- Traffic or increasing difficulty:
+- Score or best score:
+- Collision detection:
+- CRASH animation / particles:
+- GAME OVER and restart:
+
+## Software environment
 
 Please provide:
 
@@ -75,63 +110,14 @@ Please provide:
 - Build result: PASS / FAIL
 - Flash result: PASS / FAIL
 
-## Physical Behaviour
+## Build or serial output
 
-What do you see on the real display?
+Paste the relevant output inside a code block. For large logs, attach a file.
 
-Examples:
+## Physical photos
 
-- Completely black
-- Backlight on but no graphics
-- Incorrect colours
-- Corrupted graphics
-- Incorrect orientation
-- Incorrect display offset
-- ESP32 resets
-- Build failure
-- Flash failure
+Physical photos are especially useful. If possible, include the ESP32 board, display, joystick wiring, and the on-screen state where the problem occurs.
 
-## Build / Serial Output
+## Additional information
 
-Paste only the relevant section of the output inside a code block.
-
-For large logs, attach the log as a file.
-
-## Photos
-
-Photos are extremely useful for hardware diagnosis.
-
-If possible, include photos showing:
-
-- ESP32 board
-- Display module
-- Wiring
-- Physical screen output
-
-## Reproduction
-
-Describe the shortest sequence that reproduces the problem.
-
-1.
-2.
-3.
-
-## Physical Hardware Validation
-
-Does the problem occur on real hardware?
-
-- [ ] Yes
-- [ ] No
-- [ ] Not yet tested
-
-## Additional Information
-
-Add anything else that may help reproduce or diagnose the problem.
-
----
-
-## ForgeUI Hardware Lab
-
-Physically tested ESP32 hardware references, display experiments, LVGL development and potential future ForgeUI Studio hardware targets.
-
-https://forgeui.co.nz
+Add anything else that may help reproduce or diagnose the issue.
